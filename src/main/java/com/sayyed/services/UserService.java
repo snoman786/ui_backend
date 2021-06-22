@@ -37,6 +37,29 @@ public class UserService implements UsersApiDelegate {
         return new ResponseEntity<User>(convertToDto(creatredUser),HttpStatus.CREATED);
     }
 
+    @Override
+    public ResponseEntity<Void> deleteUser(Integer id) {
+        userRepo.deleteById(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<User> getUser(Integer id) {
+
+        com.sayyed.domain.User user =  userRepo.findById(id).orElseThrow(RuntimeException::new);
+        return new ResponseEntity<User>(convertToDto(user),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<User> updateUser(Integer id, User user) {
+        com.sayyed.domain.User existingUser =  userRepo.findById(id).orElseThrow(RuntimeException::new);
+        existingUser.setUserName(user.getUserName());
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        com.sayyed.domain.User updatedUser  = userRepo.save(existingUser);
+        return new ResponseEntity<User>(convertToDto(updatedUser),HttpStatus.OK);
+    }
+
     //TODO : These two methods should go to Generic one .OK for now .
     private User convertToDto(com.sayyed.domain.User user) {
         User userDto = modelMapper.map(user, User.class);
@@ -47,4 +70,6 @@ public class UserService implements UsersApiDelegate {
         com.sayyed.domain.User userEO = modelMapper.map(user,com.sayyed.domain.User.class);
         return userEO;
     }
+
+
 }
