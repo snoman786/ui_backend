@@ -147,6 +147,12 @@ paths:
     put:
       summary: Update a User by Id
       operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
       responses:
         204:
           description: No Content
