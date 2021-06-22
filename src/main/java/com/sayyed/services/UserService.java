@@ -30,9 +30,21 @@ public class UserService implements UsersApiDelegate {
         return new ResponseEntity<List<User>>(retList, HttpStatus.OK);
     }
 
-    //TODO : This should go to Generic one .OK for now .
+    @Override
+    public ResponseEntity<User> createUser(User user) {
+
+        com.sayyed.domain.User creatredUser  = userRepo.save(convertToEO(user));
+        return new ResponseEntity<User>(convertToDto(creatredUser),HttpStatus.CREATED);
+    }
+
+    //TODO : These two methods should go to Generic one .OK for now .
     private User convertToDto(com.sayyed.domain.User user) {
         User userDto = modelMapper.map(user, User.class);
         return userDto;
+    }
+
+    private com.sayyed.domain.User convertToEO(User user){
+        com.sayyed.domain.User userEO = modelMapper.map(user,com.sayyed.domain.User.class);
+        return userEO;
     }
 }
