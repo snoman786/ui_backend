@@ -2,6 +2,7 @@ package com.sayyed.services;
 
 import com.sayyed.controllers.ProductsApiDelegate;
 import com.sayyed.model.Product;
+import com.sayyed.model.User;
 import com.sayyed.repositories.ProductRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,41 @@ public class ProductServiceImpl implements ProductsApiDelegate {
         return new ResponseEntity<List<Product>>(retList, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Void> deleteProduct(Integer id) {
+        productRepo.deleteById(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Product> updateProduct(Integer id, Product product) {
+
+        com.sayyed.domain.Product existingProduct = productRepo.findById(id).get();
+        existingProduct.setName(product.getName());
+        existingProduct.setPrice(product.getPrice().floatValue());
+        com.sayyed.domain.Product newProduct = productRepo.save(existingProduct);
+        return new ResponseEntity<Product>(convertToDto(newProduct),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Product> createProduct(Product product) {
+        com.sayyed.domain.Product newProduct = productRepo.save(convertToEO(product));
+        return new ResponseEntity<Product>(convertToDto(newProduct),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Product> getProduct(Integer id) {
+        return ProductsApiDelegate.super.getProduct(id);
+    }
+
     //TODO : This should go to Generic one .OK for now .
     private Product convertToDto(com.sayyed.domain.Product product) {
         Product productDto = modelMapper.map(product, Product.class);
         return productDto;
+    }
+
+    private com.sayyed.domain.Product convertToEO(Product user){
+        com.sayyed.domain.Product productEO = modelMapper.map(user,com.sayyed.domain.Product.class);
+        return productEO;
     }
 }

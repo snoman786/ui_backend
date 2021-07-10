@@ -74,6 +74,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    put:
+      summary: Update a Product by Id
+      operationId: updateProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        204:
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+    delete:
+      summary: Delete a Product by Id
+      operationId: deleteProduct
+      responses:
+        200:
+         description: OK
 
   /users:
     get:
