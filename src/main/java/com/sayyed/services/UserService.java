@@ -56,6 +56,8 @@ public class UserService implements UsersApiDelegate {
         existingUser.setUserName(user.getUserName());
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
+        existingUser.setAge(user.getAge());
+        existingUser.setSalary(user.getSalary());
         com.sayyed.domain.User updatedUser  = userRepo.save(existingUser);
         return new ResponseEntity<User>(convertToDto(updatedUser),HttpStatus.OK);
     }
