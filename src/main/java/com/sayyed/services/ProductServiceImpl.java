@@ -56,7 +56,8 @@ public class ProductServiceImpl implements ProductsApiDelegate {
 
     @Override
     public ResponseEntity<Product> getProduct(Integer id) {
-        return ProductsApiDelegate.super.getProduct(id);
+        com.sayyed.domain.Product product =  productRepo.findById(id).orElseThrow(RuntimeException::new);
+        return new ResponseEntity<Product>(convertToDto(product),HttpStatus.OK);
     }
 
     //TODO : This should go to Generic one .OK for now .
