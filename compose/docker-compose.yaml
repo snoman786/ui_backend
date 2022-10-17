@@ -1,0 +1,15 @@
+services:
+  testdb:
+    image: dbimg
+    ports:
+      - "3306:3306"
+    volumes:
+      - testdbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+  testapp:
+    image: back-app
+    ports:
+      - "8080:8080"
+volumes:
+  testdbdata: {}
