@@ -1,3 +1,4 @@
+version: "3"
 services:
   dbSrv:
     image: dbimg
@@ -7,7 +8,7 @@ services:
       - testdbdata:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=admin
-  backend-app:
+  backend:
     image: back-app
     ports:
       - "8080:8080"
