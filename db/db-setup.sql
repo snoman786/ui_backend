@@ -18,3 +18,8 @@ CREATE TABLE `t_users` (
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = utf8 */;
+
+insert into `product`(`name`,`price`) values('Laptop',34000);
+/*!40101 SET character_set_client = utf8 */;
+insert into `t_users`(`first_name`,`last_name`,`user_id`,`age`,`salary`) values('Sayyed','Noman','snoman',39,40000);
+/*!40101 SET character_set_client = utf8 */;
