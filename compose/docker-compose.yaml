@@ -1,7 +1,7 @@
 version: "3"
 services:
   dbSrv:
-    image: dbimg
+    image: snoman1/dbimg:V1
     ports:
       - "3306:3306"
     volumes:
@@ -9,7 +9,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=admin
   backend:
-    image: back-app
+    image: snoman1/backend-app:V1
     ports:
       - "8080:8080"
 volumes:
