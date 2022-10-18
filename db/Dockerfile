@@ -1,4 +1,4 @@
-FROM mysql:5.6.17
+FROM mysql:5.7.25
 
 ENV MYSQL_ROOT_PASSWORD="admin"
 ENV MYSQL_DATABASE="nomandb"
