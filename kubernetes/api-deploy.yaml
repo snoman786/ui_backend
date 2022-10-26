@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiSrv
+  labels:
+    app: apiSrv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apiSrv
+  template:
+    metadata:
+      labels:
+        app: apiSrv
+    spec:
+      containers:
+        - name: apiSrv
+          image: snoman1/backend-app:V1
+          ports:
+            - name: api-port
+              containerPort: 8080
+      initContainers:
+        - name: init-mydb
+          image: busybox
+          command: ['sh', '-c', 'until nslookup dbSrv; do echo waiting for dbSrv; sleep 2; done;']
