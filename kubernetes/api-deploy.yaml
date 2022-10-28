@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: apisrv
-          image: snoman1/backend-app:V1
+          image: snoman1/backend-app:V2
           ports:
             - name: api-port
               containerPort: 8080

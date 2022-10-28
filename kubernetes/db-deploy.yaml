@@ -40,5 +40,5 @@ spec:
           # This AWS EBS volume must already exist.
           # This EBS Volume should exist in us-east-1a zone
           awsElasticBlockStore:
-            volumeID: <VOLUMEID>
+            volumeID: vol-01ebffdd4bfed0b49
             fsType: ext4
