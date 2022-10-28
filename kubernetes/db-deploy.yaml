@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: testdb
+  name: dbsrv
   labels:
-    app: testdb
+    app: dbsrv
 spec:
   selector:
     matchLabels:
-      app: testdb
+      app: dbsrv
   replicas: 1
   template:
     metadata:
       labels:
-        app: testdb
+        app: dbsrv
     spec:
       containers:
-        - name: testdb
+        - name: dbsrv
           image: snoman1/dbimg:V1
           args:
             - "--ignore-db-dir=lost+found"

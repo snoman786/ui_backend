@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apiSrv
+  name: apisrv
   labels:
-    app: apiSrv
+    app: apisrv
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apiSrv
+      app: apisrv
   template:
     metadata:
       labels:
-        app: apiSrv
+        app: apisrv
     spec:
       containers:
-        - name: apiSrv
+        - name: apisrv
           image: snoman1/backend-app:V1
           ports:
             - name: api-port

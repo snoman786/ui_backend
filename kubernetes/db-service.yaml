@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dbSrv
+  name: dbsrv
 spec:
   selector:
-    app: dbSrv
+    app: dbsrv
   ports:
   - port: 3306
     targetPort: db-port
